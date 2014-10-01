@@ -70,7 +70,8 @@ namespace nt2
 
               if(  (size == obound)
                 && (grain < mmbound)
-                && details::compute_cost<tag::scan_,BackEnd,Out,In>(out_,in_)
+                && details::compute_cost<tag::scan_,BackEnd,Out,In>
+                   (out_,in_,1,mmbound)
                 )
                s_out = s( w, 0, mmbound, grain);
 
@@ -95,7 +96,8 @@ namespace nt2
              w(out_,in_,neutral_,bop_, o_);
 
              if(  (size == obound)
-               && details::compute_cost<tag::transform_,BackEnd,Out,In>(out_,in_)
+               && details::compute_cost<tag::transform_,BackEnd,Out,In>
+                  (out_,in_,iboundxmbound,iboundxmbound)
                )
                s(w,0,ibound,grain);
 
