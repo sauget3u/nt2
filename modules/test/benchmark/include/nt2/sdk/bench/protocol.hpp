@@ -13,6 +13,7 @@
 #include <nt2/sdk/bench/details/display_metric.hpp>
 #include <nt2/sdk/bench/details/measure.hpp>
 #include <boost/fusion/include/for_each.hpp>
+#include <boost/fusion/include/vector.hpp>
 
 #include <boost/preprocessor/repetition/repeat.hpp>
 #include <boost/preprocessor/repetition/enum_binary_params.hpp>
