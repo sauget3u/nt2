@@ -15,7 +15,7 @@
  */
 
 #include <boost/dispatch/details/parameters.hpp>
-#include <boost/dispatch/preprocessor/strip.hpp>
+#include <boost/preprocessor/punctuation/remove_parens.hpp>
 #include <boost/dispatch/functor/details/dispatch.hpp>
 #include <boost/dispatch/attributes.hpp>
 #include <boost/preprocessor/seq/size.hpp>
@@ -26,10 +26,10 @@
 #include <boost/preprocessor/repetition/repeat_from_to.hpp>
 
 // Helpers that strips each element of a sequence
-#define BOOST_DISPATCH_TYPE_TPL(z,n,t) BOOST_DISPATCH_PP_STRIP(BOOST_PP_SEQ_ELEM(n,t))
-#define BOOST_DISPATCH_TYPE(z,n,t) class BOOST_DISPATCH_PP_STRIP(BOOST_PP_SEQ_ELEM(n,t))
-#define BOOST_DISPATCH_ARG(z,n,t) , BOOST_DISPATCH_PP_STRIP(BOOST_PP_SEQ_ELEM(n,t)) const
-#define BOOST_DISPATCH_TAG(z,n,t) BOOST_DISPATCH_PP_STRIP(BOOST_PP_SEQ_ELEM(n,t))
+#define BOOST_DISPATCH_TYPE_TPL(z,n,t) BOOST_PP_REMOVE_PARENS(BOOST_PP_SEQ_ELEM(n,t))
+#define BOOST_DISPATCH_TYPE(z,n,t) class BOOST_PP_REMOVE_PARENS(BOOST_PP_SEQ_ELEM(n,t))
+#define BOOST_DISPATCH_ARG(z,n,t) , BOOST_PP_REMOVE_PARENS(BOOST_PP_SEQ_ELEM(n,t)) const
+#define BOOST_DISPATCH_TAG(z,n,t) BOOST_PP_REMOVE_PARENS(BOOST_PP_SEQ_ELEM(n,t))
 
 // Namespace-related helpers
 #define BOOST_DISPATCH_NS_(s,data,elem) elem ::
@@ -65,8 +65,8 @@ namespace boost { namespace dispatch { namespace meta                          \
                          )                                                     \
           >                                                                    \
   BOOST_DISPATCH_FORCE_INLINE                                                  \
-  BOOST_DISPATCH_PP_STRIP(Ret)                                                 \
-  dispatching( BOOST_DISPATCH_PP_STRIP(Tag), BOOST_DISPATCH_PP_STRIP(Site)     \
+  BOOST_PP_REMOVE_PARENS(Ret)                                                 \
+  dispatching( BOOST_PP_REMOVE_PARENS(Tag), BOOST_PP_REMOVE_PARENS(Site)     \
                BOOST_PP_REPEAT( BOOST_PP_SEQ_SIZE(Seq)                         \
                               , BOOST_DISPATCH_ARG                             \
                               , Seq                                            \
@@ -74,7 +74,7 @@ namespace boost { namespace dispatch { namespace meta                          \
             , adl_helper = adl_helper()                                        \
             )                                                                  \
   {                                                                            \
-    return BOOST_DISPATCH_PP_STRIP(Ret)();                                     \
+    return BOOST_PP_REMOVE_PARENS(Ret)();                                     \
   }                                                                            \
 } } }                                                                          \
 BOOST_DISPATCH_REOPEN(NS)                                                      \
@@ -105,8 +105,8 @@ namespace boost { namespace dispatch { namespace meta                          \
                          )                                                     \
           >                                                                    \
   BOOST_DISPATCH_FORCE_INLINE                                                  \
-  BOOST_DISPATCH_PP_STRIP(Ret)                                                 \
-  dispatching( BOOST_DISPATCH_PP_STRIP(Tag), BOOST_DISPATCH_PP_STRIP(Site)     \
+  BOOST_PP_REMOVE_PARENS(Ret)                                                 \
+  dispatching( BOOST_PP_REMOVE_PARENS(Tag), BOOST_PP_REMOVE_PARENS(Site)     \
                BOOST_PP_REPEAT( BOOST_PP_SEQ_SIZE(Seq)                         \
                               , BOOST_DISPATCH_ARG                             \
                               , Seq                                            \
@@ -114,7 +114,7 @@ namespace boost { namespace dispatch { namespace meta                          \
             , adl_helper = adl_helper()                                        \
             )                                                                  \
   {                                                                            \
-    return BOOST_DISPATCH_PP_STRIP(Ret)();                                     \
+    return BOOST_PP_REMOVE_PARENS(Ret)();                                     \
   }                                                                            \
 } } }                                                                          \
 BOOST_DISPATCH_REOPEN(NS)                                                      \
@@ -146,10 +146,10 @@ namespace boost { namespace dispatch { namespace meta                          \
                          )                                                     \
           >                                                                    \
   BOOST_DISPATCH_FORCE_INLINE                                                  \
-  typename boost::enable_if< BOOST_DISPATCH_PP_STRIP(Cond)                     \
-                           , BOOST_DISPATCH_PP_STRIP(Ret)                      \
+  typename boost::enable_if< BOOST_PP_REMOVE_PARENS(Cond)                     \
+                           , BOOST_PP_REMOVE_PARENS(Ret)                      \
                            >::type                                             \
-  dispatching( BOOST_DISPATCH_PP_STRIP(Tag), BOOST_DISPATCH_PP_STRIP(Site)     \
+  dispatching( BOOST_PP_REMOVE_PARENS(Tag), BOOST_PP_REMOVE_PARENS(Site)     \
                BOOST_PP_REPEAT( BOOST_PP_SEQ_SIZE(Seq)                         \
                               , BOOST_DISPATCH_ARG                             \
                               , Seq                                            \
@@ -157,7 +157,7 @@ namespace boost { namespace dispatch { namespace meta                          \
             , adl_helper = adl_helper()                                        \
             )                                                                  \
   {                                                                            \
-    return BOOST_DISPATCH_PP_STRIP(Ret)();                                     \
+    return BOOST_PP_REMOVE_PARENS(Ret)();                                     \
   }                                                                            \
 } } }                                                                          \
 BOOST_DISPATCH_REOPEN(NS)                                                      \
@@ -190,10 +190,10 @@ namespace boost { namespace dispatch { namespace meta                          \
                          )                                                     \
           >                                                                    \
   BOOST_DISPATCH_FORCE_INLINE                                                  \
-  typename boost::enable_if< BOOST_DISPATCH_PP_STRIP(Cond)                     \
-                           , BOOST_DISPATCH_PP_STRIP(Ret)                      \
+  typename boost::enable_if< BOOST_PP_REMOVE_PARENS(Cond)                     \
+                           , BOOST_PP_REMOVE_PARENS(Ret)                      \
                            >::type                                             \
-  dispatching( BOOST_DISPATCH_PP_STRIP(Tag), BOOST_DISPATCH_PP_STRIP(Site)     \
+  dispatching( BOOST_PP_REMOVE_PARENS(Tag), BOOST_PP_REMOVE_PARENS(Site)     \
                BOOST_PP_REPEAT( BOOST_PP_SEQ_SIZE(Seq)                         \
                               , BOOST_DISPATCH_ARG                             \
                               , Seq                                            \
@@ -201,7 +201,7 @@ namespace boost { namespace dispatch { namespace meta                          \
             , adl_helper = adl_helper()                                        \
             )                                                                  \
   {                                                                            \
-    return BOOST_DISPATCH_PP_STRIP(Ret)();                                     \
+    return BOOST_PP_REMOVE_PARENS(Ret)();                                     \
   }                                                                            \
 } } }                                                                          \
 BOOST_DISPATCH_REOPEN(NS)                                                      \
@@ -212,13 +212,13 @@ BOOST_DISPATCH_REOPEN(NS)                                                      \
 //==============================================================================
 
 #define BOOST_DISPATCH_IMPLEMENT_(Tag, Site, Seq)                              \
-implement< BOOST_DISPATCH_PP_STRIP(Tag)                                        \
+implement< BOOST_PP_REMOVE_PARENS(Tag)                                        \
            ( BOOST_PP_ENUM( BOOST_PP_SEQ_SIZE(Seq)                             \
                           , BOOST_DISPATCH_TAG                                 \
                           , Seq                                                \
                           )                                                    \
            )                                                                   \
-         , BOOST_DISPATCH_PP_STRIP(Site)                                       \
+         , BOOST_PP_REMOVE_PARENS(Site)                                       \
          >                                                                     \
 /**/
 
