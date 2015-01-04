@@ -1,7 +1,7 @@
 //==============================================================================
 //         Copyright 2003 - 2012 LASMEA UMR 6602 CNRS/Univ. Clermont II
 //         Copyright 2009 - 2012 LRI    UMR 8623 CNRS/Univ Paris Sud XI
-//         Copyright 2012        MetaScale SAS
+//         Copyright 2012 - 2015 NumScale SAS
 //
 //          Distributed under the Boost Software License, Version 1.0.
 //                 See accompanying file LICENSE.txt or copy at
@@ -17,7 +17,6 @@
 #include <nt2/sdk/meta/cardinal_of.hpp>
 #include <boost/simd/sdk/details/io_fix.hpp>
 #include <boost/simd/operator/specific/utils.hpp>
-#include <boost/dispatch/meta/ignore_unused.hpp>
 #include <nt2/sdk/meta/type_id.hpp>
 #include <nt2/include/functions/load.hpp>
 #include <nt2/include/functions/store.hpp>
@@ -28,6 +27,7 @@
 #include <boost/preprocessor/seq/seq.hpp>
 #include <boost/preprocessor/repetition/enum.hpp>
 #include <boost/preprocessor/repetition/repeat_from_to.hpp>
+#include <boost/core/ignore_unused.hpp>
 #include <boost/typeof/typeof.hpp>
 #include <boost/mpl/vector.hpp>
 #include <boost/mpl/at.hpp>
@@ -148,7 +148,7 @@ namespace nt2 { namespace details
                                                                                \
     BOOST_PP_REPEAT(n,NT2_COVER_INPUT_TYPES,~)                                 \
                                                                                \
-    boost::dispatch::ignore_unused(f);                                         \
+    boost::ignore_unused(f);                                                   \
     typedef BOOST_TYPEOF_TPL(f( BOOST_PP_ENUM(n,NT2_COVER_LOADS,0) )) r_t;     \
                                                                                \
     BOOST_FOREACH ( typename ULPs::const_reference ff, ulps )                  \
