@@ -16,7 +16,7 @@
 #include <nt2/sdk/unit/details/prng.hpp>
 #include <nt2/include/functor.hpp>
 #include <boost/simd/memory/allocator.hpp>
-#include <boost/dispatch/preprocessor/once.hpp>
+#include <nt2/sdk/unit/details/once.hpp>
 #include <vector>
 #include <string>
 
@@ -30,16 +30,6 @@
 std::vector<Type,boost::simd::allocator<Type> > Name(Size);                    \
 nt2::roll( Name, Min, Max )                                                    \
 /**/
-
-/// INTERNAL ONLY TO REMOVE LATER
-#define NT2_CREATE_LOGICAL_BUF(Name,Type,Size)                                 \
-std::vector<Type,boost::simd::allocator<Type> > Name(Size);                    \
-do                                                                             \
-{                                                                              \
-  for(std::size_t i=0;i<Name.size();++i) Name[i] = Type(rand() % 2);           \
-} BOOST_DISPATCH_ONCE                                                          \
-/**/
-
 
 /*!
   @brief Perform precision coverage test on arbitrary function
@@ -66,7 +56,7 @@ do                                                                             \
                                 , N                                            \
                                 , NT2_COVER_VALUES_LIST(INPUTS)                \
                                 );                                             \
-} BOOST_DISPATCH_ONCE                                                          \
+} NT2_TEST_ONCE                                                          \
 /**/
 
 /*!
