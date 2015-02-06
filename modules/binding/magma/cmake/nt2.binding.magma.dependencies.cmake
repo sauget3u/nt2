@@ -64,12 +64,6 @@ endif()
 
   endif()
 
-  # CUDA-related stuff
-  find_package(CUDA)
-  set(CUBLAS_LIBRARY ${CUDA_CUBLAS_LIBRARIES})
-  set(CUDART_LIBRARY ${CUDA_CUDART_LIBRARY})
-  set(CUBLAS_HEADER ${CUDA_INCLUDE_DIRS})
-
   # try find magma.h
   find_path(  MAGMA_MAGMA_HEADER
     NAMES magma.h
@@ -94,7 +88,6 @@ endif()
   set(MAGMA_FOUND 1)
   set(MAGMA_INCLUDE_PATH "${MAGMA_MAGMA_HEADER}/" "${MAGMA_COMMON_HEADER}/" "${CUDA_ERROR_HEADER}/")
   set(MAGMA_CXX_FLAGS "-DNT2_USE_MAGMA -DHAVE_CUBLAS")
-  set(MAGMA_LIBRARY ${MAGMA_MAGMA_LIBRARY} ${CUDART_LIBRARY} ${CUBLAS_LIBRARY})
   if(MAGMA_MAGMABLAS_LIBRARY)
   list(APPEND MAGMA_LIBRARY ${MAGMA_MAGMABLAS_LIBRARY})
   endif()
@@ -113,6 +106,7 @@ endif()
   set(NT2_BINDING.MAGMA_DEPENDENCIES_LIBRARIES        ${MAGMA_LIBRARY})
 
   set(  NT2_BINDING.MAGMA_DEPENDENCIES_EXTRA
+    arch.cuda
     boost.dispatch
     boost.simd.base
     core.base
