@@ -179,7 +179,6 @@ BOOST_DISPATCH_REOPEN(NS)                                                      \
  * \param Seq Sequence of hierarchy defining the overload
  */
 //==============================================================================
-<<<<<<< HEAD
 #define BOOST_DISPATCH_REGISTER_TPL_TO_IF(NS, Tag, Site, Types, Cond, Seq, Ret) \
 BOOST_DISPATCH_CLOSE(NS)                                                       \
 namespace boost { namespace dispatch { namespace meta                          \
